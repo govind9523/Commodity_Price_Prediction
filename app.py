@@ -80,4 +80,5 @@ def predict_price(comm_code, weight, quarter_numeric):
     return predicted_price[0]
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
