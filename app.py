@@ -22,7 +22,7 @@ commodity_mapping = {
 }
 
 # Load the trained model from the pickle file
-with open('/Users/govindkumar/Desktop/project/trained_model (2).pkl', 'rb') as file:
+with open('trained_model (2).pkl', 'rb') as file:
     best_model = pickle.load(file)
 
 # Make sure you fit on the original Price column from your dataset
@@ -80,4 +80,4 @@ def predict_price(comm_code, weight, quarter_numeric):
     return predicted_price[0]
 
 
-app.run()
+app.run(debug=True)
