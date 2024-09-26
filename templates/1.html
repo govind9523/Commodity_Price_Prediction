@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commodity Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #444;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f5e9;
+            border: 1px solid #28a745;
+            border-radius: 5px;
+            font-size: 1.2em;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Commodity Price Index Prediction</h1>
+        <form method="POST">
+            <label for="commodity">Select Commodity:</label>
+            <select name="commodity" id="commodity" required>
+                <option value="Wheat">Wheat</option>
+                <option value="Ragi">Ragi</option>
+                <option value="Gram">Gram</option>
+                <option value="Peas/Chawali">Peas/Chawali</option>
+                <option value="Potato">Potato</option>
+                <option value="Sweet Potato">Sweet Potato</option>
+                <option value="Ginger (Fresh)">Ginger (Fresh)</option>
+                <option value="Carrot">Carrot</option>
+                <option value="Bottle gourd">Bottle gourd</option>
+            </select><br><br>
+
+            <label for="wt">Weight:</label>
+            <input type="number" name="wt" id="wt" step="any" required><br><br>
+
+            <label for="year">Year:</label>
+            <select name="year" id="year" required>
+                {% for year in range(2013, 2026) %}
+                <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="quarter">Quarter:</label>
+            <select name="quarter" id="quarter" required>
+                <option value="1">Q1</option>
+                <option value="2">Q2</option>
+                <option value="3">Q3</option>
+                <option value="4">Q4</option>
+            </select><br><br>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if predicted_price is not none %}
+            <div class="result">
+                <h2>Predicted Price for {{ commodity }} in {{ year }} Q{{ quarter }}: {{ predicted_price }}</h2>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
